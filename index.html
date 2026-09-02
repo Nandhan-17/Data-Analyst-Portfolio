@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+x<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -213,25 +213,49 @@
   .edu-card .sub{ color:var(--text-dim); font-size:0.88rem; }
   .edu-card .cgpa{ font-family:var(--mono); font-size:0.85rem; color:var(--accent); margin-top:10px; }
 
-  .stack-panel{ padding:30px 26px 24px; }
-  .stack-groups{ display:grid; gap:18px; margin-top:18px; }
-  .stack-group{ display:grid; gap:10px; }
+  .stack-panel{ padding:32px 30px 28px; background:rgba(4,8,10,0.58); border:1px solid rgba(242,245,243,0.12); border-radius:18px; }
+  .stack-groups{ display:grid; gap:22px; margin-top:24px; }
+  .stack-group{ display:grid; gap:11px; }
   .stack-title{
-    font-family:var(--mono); font-size:0.78rem; letter-spacing:0.18em;
-    text-transform:uppercase; color:var(--accent); font-weight:700;
+    font-family:var(--display); font-size:1.35rem; letter-spacing:0;
+    color:var(--text); font-weight:600;
     margin-bottom:0;
   }
   .stack-group .label{
-    font-family:var(--mono); font-size:0.7rem; color:#f5f7f6;
-    letter-spacing:0.14em; text-transform:uppercase; line-height:1.4;
-    font-weight:700; opacity:1;
+    font-family:var(--display); font-size:0.92rem; color:var(--text-dim);
+    letter-spacing:0; line-height:1.4; font-weight:500;
   }
-  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .stack-primary{
+    display:inline-flex; align-items:center; gap:8px; width:fit-content;
+    padding:9px 13px; border:1px solid rgba(59,230,168,0.32); border-radius:10px;
+    background:rgba(59,230,168,0.1); color:var(--text); font-size:0.92rem;
+    font-weight:600; transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .stack-primary:hover{ transform:translateY(-2px) scale(1.02); border-color:var(--accent); box-shadow:0 8px 24px rgba(59,230,168,0.16); }
+  .stack-primary svg{ width:18px; height:18px; color:var(--accent); flex-shrink:0; }
+  .stack-primary.python,.stack-primary.sql,.stack-primary.excel{ --brand:#3be6a8; border-color:rgba(59,230,168,0.62); background:rgba(59,230,168,0.14); }
+  .stack-primary.python svg,.stack-primary.sql svg,.stack-primary.excel svg{ color:var(--brand); }
+  .stack-primary.python:hover,.stack-primary.sql:hover,.stack-primary.excel:hover{ border-color:var(--brand); box-shadow:0 8px 24px color-mix(in srgb, var(--brand) 22%, transparent); }
+  .stack-related{
+    display:inline-flex; align-items:center; flex-wrap:wrap; gap:7px;
+    color:rgba(242,245,243,0.58); font-size:0.86rem; line-height:1.6;
+  }
+  .stack-related::before{ content:'['; color:rgba(242,245,243,0.35); font-size:1rem; }
+  .stack-related::after{ content:']'; color:rgba(242,245,243,0.35); font-size:1rem; }
+  .stack-related span:not(:last-child)::after{ content:'·'; color:rgba(242,245,243,0.3); margin-left:7px; }
+  .stack-extra{ display:flex; flex-wrap:wrap; gap:9px; margin-top:1px; }
+  .stack-extra .pill{ display:inline-flex; align-items:center; gap:6px; padding:7px 10px; font-size:0.72rem; border-radius:8px; color:var(--text-dim); background:rgba(255,255,255,0.035); transition:transform .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease; }
+  .stack-extra .pill:hover{ transform:translateY(-2px) scale(1.02); color:var(--text); border-color:rgba(59,230,168,0.45); box-shadow:0 6px 18px rgba(59,230,168,0.1); }
+  .stack-extra .pill svg{ width:15px; height:15px; flex-shrink:0; color:var(--accent); }
+  .stack-extra .pill.mysql,.stack-extra .pill.firebase,.stack-extra .pill.powerbi,.stack-extra .pill.tableau,.stack-extra .pill.git,.stack-extra .pill.github,.stack-extra .pill.vscode,.stack-extra .pill.jupyter{ --brand:#3be6a8; border-color:rgba(59,230,168,0.42); background:rgba(59,230,168,0.08); }
+  .stack-extra .pill.mysql svg,.stack-extra .pill.firebase svg,.stack-extra .pill.powerbi svg,.stack-extra .pill.tableau svg,.stack-extra .pill.git svg,.stack-extra .pill.github svg,.stack-extra .pill.vscode svg,.stack-extra .pill.jupyter svg{ color:var(--brand); }
+  .stack-extra .pill.mysql:hover,.stack-extra .pill.firebase:hover,.stack-extra .pill.powerbi:hover,.stack-extra .pill.tableau:hover,.stack-extra .pill.git:hover,.stack-extra .pill.github:hover,.stack-extra .pill.vscode:hover,.stack-extra .pill.jupyter:hover{ border-color:var(--brand); box-shadow:0 6px 18px color-mix(in srgb, var(--brand) 18%, transparent); }
   .pill{
     font-family:var(--mono); font-size:0.72rem; line-height:1.3; padding:8px 12px;
     border:1px solid rgba(242,245,243,0.16); border-radius:6px;
     background:rgba(13,18,22,0.78); color:var(--text);
-    letter-spacing:0.04em; text-transform:uppercase;
+    letter-spacing:0.02em;
     opacity:1; transform:none; white-space:normal; font-weight:600;
   }
 
@@ -300,6 +324,8 @@
     stroke:var(--accent);
     transform:scale(1.15);
   }
+  .contact-cta .btn svg{ width:16px; height:16px; flex-shrink:0; }
+  .contact-links a svg{ width:16px; height:16px; }
 
   footer{
     padding:30px 6vw;
@@ -375,60 +401,35 @@
       <div class="stack-title">Tech Stack</div>
       <div class="stack-groups">
         <div class="stack-group">
-          <div class="label">Programming Languages</div>
+          <div class="label">Languages &amp; Libraries</div>
           <div class="pill-row">
-            <span class="pill">Python</span>
-            <span class="pill">Pandas</span>
-            <span class="pill">NumPy</span>
-            <span class="pill">Seaborn</span>
-            <span class="pill">Matplotlib</span>
+            <span class="stack-primary python"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c-4.7 0-4.5 2-4.5 2v3h4.6v1H5.4S2 7.6 2 12.4 5 17.5 5 17.5h2v-3.1s-.1-3.1 3-3.1h5.1s2.9 0 2.9-2.8V5s.5-3-6-3Zm-2.5 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="currentColor"></path><path d="M12 22c4.7 0 4.5-2 4.5-2v-3h-4.6v-1h6.7s3.4.4 3.4-4.4S19 6.5 19 6.5h-2v3.1s.1 3.1-3 3.1H8.9S6 12.7 6 15.5V19s-.5 3 6 3Zm2.5-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"></path></svg>Python</span>
+            <span class="stack-related"><span>Pandas</span><span>NumPy</span><span>Seaborn</span><span>Matplotlib</span></span>
           </div>
         </div>
 
         <div class="stack-group">
           <div class="label">Database &amp; Querying</div>
           <div class="pill-row">
-            <span class="pill">SQL</span>
-            <span class="pill">Joins</span>
-            <span class="pill">Subqueries</span>
-            <span class="pill">Aggregations</span>
-            <span class="pill">MySQL</span>
-            <span class="pill">Firebase</span>
+            <span class="stack-primary sql"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><ellipse cx="12" cy="5" rx="7.5" ry="3"></ellipse><path d="M4.5 5v7c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V5M4.5 12v7c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-7"></path></svg>SQL</span>
+            <span class="stack-related"><span>Joins</span><span>Subqueries</span><span>Aggregations</span></span>
+            <div class="stack-extra"><span class="pill mysql"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.3 17.8c.8-1.8 2.1-3.5 3.7-4.8-.1-2.8.2-5.1 1.2-6.8.9-1.6 2.2-2.6 3.8-3.1-.2 1.1-.1 2.1.3 3 .7-.5 1.6-.8 2.6-.8 1.5 0 2.8.5 3.8 1.5-1.1.1-2.1.5-3 1.2 1.2.3 2.2.9 3 1.8-1.1.3-2.1.8-2.8 1.6-.6.7-1.1 1.6-1.3 2.7 1.5-.3 2.8-.1 3.9.6-1 .4-1.9 1-2.6 1.9-.8 1-1.2 2.2-1.3 3.5-1.5-.7-3-.8-5-.3-1.7.6-3.4.5-5-.1-.7-.3-1.3-.6-1.9-1.1Z"></path></svg>MySQL</span><span class="pill firebase"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.4C10.7 5.6 7.1 8.1 6 11.7c-1.2 3.9 1.6 7.8 6 7.8 3.7 0 6.2-2.5 6.2-5.9 0-2.4-1.4-4.4-3.5-6.1.2 2-1.1 3.2-2 3.7.1-2.9-1.1-5.9-.7-8.8Z"></path></svg>Firebase</span></div>
           </div>
         </div>
 
         <div class="stack-group">
-          <div class="label">Data Analysis &amp; Visualization</div>
+          <div class="label">Business Intelligence &amp; Analytics</div>
           <div class="pill-row">
-            <span class="pill">Excel</span>
-            <span class="pill">Pivot Tables</span>
-            <span class="pill">XLOOKUP</span>
-            <span class="pill">Power Query</span>
-            <span class="pill">EDA</span>
-            <span class="pill">Power BI</span>
-            <span class="pill">Tableau</span>
+            <span class="stack-primary excel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 16v-3m5 3V8m5 8v-6"></path></svg>Advanced Excel</span>
+            <span class="stack-related"><span>Pivot Tables</span><span>XLOOKUP</span><span>Power Query</span></span>
+            <div class="stack-extra"><span class="pill powerbi"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h5v16H4V4Zm6 5h5v11h-5V9Zm6-4h5v15h-5V5Z"></path></svg>Power BI</span><span class="pill tableau"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5h16M12 5v14M7 19h10M7 12h10"></path></svg>Tableau</span></div>
           </div>
         </div>
 
         <div class="stack-group">
-          <div class="label">Tools / Platforms</div>
+          <div class="label">Developer Tools</div>
           <div class="pill-row">
-            <span class="pill">Git</span>
-            <span class="pill">GitHub</span>
-            <span class="pill">Jupyter</span>
-            <span class="pill">VS Code</span>
-          </div>
-        </div>
-
-        <div class="stack-group">
-          <div class="label">Core Strengths</div>
-          <div class="pill-row">
-            <span class="pill">Business KPI</span>
-            <span class="pill">Insights Reporting</span>
-            <span class="pill">Machine Learning</span>
-            <span class="pill">Analytical Thinking</span>
-            <span class="pill">Problem Solving</span>
-            <span class="pill">Quick Learner</span>
+            <div class="stack-extra"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"></circle><circle cx="18" cy="7" r="2"></circle><circle cx="6" cy="19" r="2"></circle><path d="M8 5h3a5 5 0 0 1 5 5v0M8 19h3a5 5 0 0 0 5-5v-1"></path></svg>Git</span><span class="pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 7.9c.85 0 1.7.11 2.49.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .26.18.57.69.48A10 10 0 0 0 12 2Z"></path></svg>GitHub</span><span class="pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m13.3 2.2 8.5 4.9v9.8l-8.5 4.9V2.2ZM10.7 3.7v5.1L7.8 7.1l2.9-3.4ZM10.7 10.8v9.5l-7.5-4.3V7.7l7.5 3.1Zm0-2.9L8.2 5.1 10.7 3.7v4.2Zm0 5.4L8 12.2v4.9l2.7 1.5v-5.3Z"></path></svg>VS Code</span><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="2.5"></circle><ellipse cx="12" cy="12" rx="9" ry="4"></ellipse><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(120 12 12)"></ellipse></svg>Jupyter Notebook</span></div>
           </div>
         </div>
       </div>
@@ -517,13 +518,15 @@
   <div class="contact-card glass float">
     <div class="eyebrow" style="justify-content:center;">Open Channel</div>
     <h2>Let's build something intelligent.</h2>
-    <p>Available for entry-level Full Stack Developer and AI engineering roles. Reach out directly — I typically reply within a day.</p>
+    <p>Available for entry-level Data Analyst and Data Scientist roles. Reach out directly — I typically reply within a day.</p>
     <div class="contact-cta">
     <a href="mailto:nandhanudhayakumar@gmail.com" class="btn btn-solid">
-        Email 
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+      Email
     </a>
 
     <a href="tel:+916374983667" class="btn btn-outline magnetic">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 3.2 2 2 0 0 1 4.11 1h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 8.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92z"></path></svg>
         Call/WhatsApp
     </a>
 </div>
@@ -544,11 +547,11 @@
     </p>
 </div>
     <div class="contact-links">
-      <a href="https://linkedin.com/in/nandhan-ai" target="_blank" rel="noopener">LINKEDIN</a>
-      <a href="https://github.com/Nandhan-17" target="_blank" rel="noopener">GITHUB</a>
-      <a href="https://stark-analytics-eta.vercel.app/" target="_blank" rel="noopener">PROJECT</a>
+      <a href="https://linkedin.com/in/nandhan-ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5H3V21h3.5V8.5ZM4.75 3A2.05 2.05 0 1 0 4.75 7.1 2.05 2.05 0 0 0 4.75 3ZM21 13.85c0-3.76-2-5.52-4.67-5.52a4.04 4.04 0 0 0-3.65 2.01V8.5H9.2V21h3.48v-6.19c0-1.63.31-3.2 2.33-3.2 1.99 0 2.02 1.86 2.02 3.31V21H21v-7.15Z"></path></svg>LINKEDIN</a>
+      <a href="https://github.com/Nandhan-17" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 7.9c.85 0 1.7.11 2.49.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .26.18.57.69.48A10 10 0 0 0 12 2Z"></path></svg>GITHUB</a>
+      <a href="https://stark-analytics-eta.vercel.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M8 4V2m8 2V2M3 9h18M8 14h3m-3 3h5"></path></svg>PROJECT</a>
 
-      <a href="https://www.google.com/maps/dir/10.6141102,79.5579333/Kottur,+Tamil+Nadu/@10.6149531,79.5531341,17z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3a555aaf257e0133:0x237d0d084e00b58f!2m2!1d79.5609695!2d10.6139199?entry=ttu&g_ep=EgoyMDI2MDcyNy4wIKXMDSoASAFQAw%3D%3D">LOCATION</a>
+      <a href="https://www.google.com/maps/dir/10.6141102,79.5579333/Kottur,+Tamil+Nadu/@10.6149531,79.5531341,17z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3a555aaf257e0133:0x237d0d084e00b58f!2m2!1d79.5609695!2d10.6139199?entry=ttu&g_ep=EgoyMDI2MDcyNy4wIKXMDSoASAFQAw%3D%3D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>LOCATION</a>
     </div>
   </div>
 </section>
