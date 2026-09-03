@@ -287,6 +287,7 @@
 
   .contact{ text-align:center; }
   .contact-card{ max-width:720px; margin:0 auto; padding:60px 40px; }
+  @media (max-width:700px){ .contact-card{ padding:42px 18px; } }
   .contact h2{ font-size:clamp(2.2rem, 5vw, 4rem); font-weight:700; }
   .contact p{ color:var(--text-dim); max-width:520px; margin:18px auto 40px; }
   .contact-links{
@@ -511,7 +512,7 @@
 </section>
 
 <section class="section contact" id="contact">
-  <div class="contact-card glass float">
+  <div class="contact-card glass">
     <div class="eyebrow" style="justify-content:center;">Open Channel</div>
     <h2>Let's build something intelligent.</h2>
     <p>Available for entry-level Data Analyst roles. Reach out directly — I typically reply within a day.</p>
@@ -648,7 +649,7 @@ gsap.from('.hero-cta', { y:24, opacity:0, duration:0.9, ease:'power3.out', delay
 gsap.from('.hero-meta', { opacity:0, duration:1, delay:2.1 });
 
 /* ---------- scroll reveals ---------- */
-document.querySelectorAll('.section-head, .cap-card, .project, .chrono-item, .cert-card, .edu-card, .stack-panel, .contact-card').forEach((el)=>{
+document.querySelectorAll('.section-head, .cap-card, .project, .chrono-item, .cert-card, .edu-card, .stack-panel').forEach((el)=>{
   gsap.from(el, {
     scrollTrigger:{ trigger: el, start:'top 88%' },
     y:40, opacity:0, duration:0.85, ease:'power3.out'
