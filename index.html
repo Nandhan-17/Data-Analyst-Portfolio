@@ -339,10 +339,15 @@
   @media (max-width: 700px) {
     /* Mobile Background Image - preserve portrait composition & non-zoomed appearance */
     .bg-photo {
-      background-image: url('./mobile-portrait.jpg') !important;
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100dvh !important;
+      background-image: url('/mobile-portrait.jpg') !important;
       background-size: contain !important;
       background-position: center bottom !important;
       background-repeat: no-repeat !important;
+      background-attachment: scroll !important;
       background-color: #000000 !important;
     }
     .bg-aurora {
