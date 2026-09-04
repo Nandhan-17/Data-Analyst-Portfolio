@@ -61,7 +61,7 @@
     background-size:cover;
     background-position:center 22%;
     background-repeat:no-repeat;
-    background-attachment:scroll;
+    background-attachment:fixed;
   }
   /* legibility scrim only — no shapes, no illustrations, just a tone graded over the photo */
   .bg-scrim{
@@ -339,11 +339,15 @@
   @media (max-width: 700px) {
     /* Mobile Background Image - preserve portrait composition & non-zoomed appearance */
     .bg-photo {
-      background-image: url('mobile-portrait.jpg') !important;
+      background-image: url('./mobile-portrait.jpg') !important;
       background-size: contain !important;
       background-position: center bottom !important;
       background-repeat: no-repeat !important;
       background-color: #000000 !important;
+    }
+    .bg-aurora {
+      animation: none;
+      opacity: 0.55;
     }
 
     /* Hide desktop horizontal nav */
@@ -853,10 +857,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* ---------- Lenis smooth scroll ---------- */
 const lenis = new Lenis({ duration: 1.15, smoothWheel: true, easing: (t)=>1-Math.pow(1-t,3) });
-function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
 lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time)=>{ lenis.raf(time*1000); });
+gsap.ticker.add((time)=>{
+  lenis.raf(time*1000);
+  rx += (mx-rx)*0.14;
+  ry += (my-ry)*0.14;
+  ring.style.transform=`translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+});
 gsap.ticker.lagSmoothing(0);
 
 /* ---------- custom cursor + trail ---------- */
@@ -869,12 +876,6 @@ window.addEventListener('mousemove', (e)=>{
   dot.style.transform=`translate(${mx}px, ${my}px) translate(-50%,-50%)`;
   spot.style.transform=`translate(${mx}px, ${my}px) translate(-50%,-50%)`;
 });
-function trailLoop(){
-  rx += (mx-rx)*0.14; ry += (my-ry)*0.14;
-  ring.style.transform=`translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-  requestAnimationFrame(trailLoop);
-}
-trailLoop();
 document.querySelectorAll('a,.btn').forEach(el=>{
   el.addEventListener('mouseenter',()=>{ ring.style.width='54px'; ring.style.height='54px'; ring.style.borderColor='rgba(59,230,168,0.9)'; });
   el.addEventListener('mouseleave',()=>{ ring.style.width='32px'; ring.style.height='32px'; ring.style.borderColor='rgba(59,230,168,0.55)'; });
