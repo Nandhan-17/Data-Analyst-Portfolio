@@ -340,9 +340,13 @@
   @media (max-width: 700px) {
     html, body {
       background-color: #0b0f17;
+      overflow-y: auto;
+      touch-action: pan-y;
     }
     body {
+      min-height: 100dvh;
       overscroll-behavior-y: none;
+      -webkit-overflow-scrolling: touch;
     }
 
     /* Mobile Background Image - preserve portrait composition & non-zoomed appearance */
@@ -481,6 +485,7 @@
     /* Mobile Content Layout Responsiveness */
     html, body {
       overflow-x: hidden;
+      overflow-y: auto;
     }
     .hero {
       padding: 86px 5vw 60px;
@@ -1003,6 +1008,7 @@ if (hamburgerBtn && mobileNavOverlay) {
     hamburgerBtn.classList.remove('active');
     mobileNavOverlay.classList.remove('active');
     document.body.style.overflow = '';
+    document.body.style.overflowY = 'auto';
   }
 
   function toggleMobileMenu() {
