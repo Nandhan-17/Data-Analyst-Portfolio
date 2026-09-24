@@ -144,33 +144,43 @@
     transition:opacity .7s ease, visibility .7s ease;
   }
   .intro-screen.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
-  .intro-screen::before{
-    content:''; position:absolute; width:min(72vw,720px); aspect-ratio:1;
-    border:1px solid rgba(59,230,168,0.16); border-radius:50%;
-    box-shadow:0 0 0 90px rgba(200,168,107,0.035), 0 0 90px rgba(59,230,168,0.08);
-    animation:introOrbit 2.4s ease-in-out infinite alternate;
+  .intro-mark{ position:relative; width:min(78vw,260px); text-align:center; }
+  .watch-face{
+    position:relative; width:92px; aspect-ratio:1; margin:0 auto 22px;
+    border:1px solid var(--accent-2); border-radius:50%;
+    box-shadow:0 0 0 1px rgba(59,230,168,.16), inset 0 0 18px rgba(200,168,107,.08);
+    opacity:0; animation:watchReveal .8s .15s ease forwards;
   }
-  .intro-mark{ position:relative; width:min(78vw,430px); text-align:center; }
-  .intro-kicker, .intro-caption{
-    font-family:var(--mono); font-size:.68rem; letter-spacing:.24em;
-    text-transform:uppercase; color:var(--accent); opacity:0;
+  .watch-face::before{
+    content:''; position:absolute; inset:7px; border:1px solid rgba(200,168,107,.3); border-radius:50%;
   }
-  .intro-kicker{ animation:introRise .65s .15s ease forwards; }
-  .intro-title{
-    margin:18px 0 16px; font-family:var(--display); font-size:clamp(2.2rem,7vw,4.6rem);
-    line-height:.95; letter-spacing:.02em; font-weight:600; opacity:0;
-    animation:introRise .8s .3s cubic-bezier(.2,.8,.2,1) forwards;
+  .watch-tick{ position:absolute; left:50%; top:5px; width:1px; height:7px; background:var(--accent-2); transform-origin:1px 41px; }
+  .watch-tick:nth-child(2){ transform:rotate(90deg); }
+  .watch-tick:nth-child(3){ transform:rotate(180deg); }
+  .watch-tick:nth-child(4){ transform:rotate(270deg); }
+  .watch-hand{ position:absolute; left:50%; bottom:50%; width:1px; background:var(--accent-2); transform-origin:bottom center; }
+  .watch-hand.hour{ height:25px; transform:rotate(3deg); }
+  .watch-hand.minute{ height:34px; opacity:.85; transform:rotate(2deg); animation:minuteHand 1.8s ease-in-out infinite; }
+  .watch-hand.second{ height:38px; width:1px; background:var(--accent); transform:rotate(180deg); animation:secondHand 1.8s cubic-bezier(.4,0,.2,1) infinite; }
+  .watch-pin{ position:absolute; left:50%; top:50%; width:4px; height:4px; border:1px solid var(--accent-2); background:#030506; border-radius:50%; transform:translate(-50%,-50%); }
+  .intro-wordmark{
+    font-family:var(--mono); font-size:.68rem; font-weight:600; letter-spacing:.38em;
+    padding-left:.38em; color:var(--text); opacity:0; animation:introRise .65s .55s ease forwards;
   }
-  .intro-rule{ height:1px; width:0; margin:0 auto 16px; background:linear-gradient(90deg,transparent,var(--accent-2),transparent); animation:introRule .8s .65s ease forwards; }
-  .intro-caption{ color:var(--text-dim); animation:introRise .65s .8s ease forwards; }
-  @keyframes introRise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
-  @keyframes introRule{ to{ width:100%; } }
-  @keyframes introOrbit{ from{ transform:scale(.92) rotate(-8deg); opacity:.65; } to{ transform:scale(1.04) rotate(8deg); opacity:1; } }
+  .intro-wordmark span{ color:var(--accent); }
+  .intro-progress{
+    margin-top:22px; font-family:var(--mono); font-size:.63rem; letter-spacing:.28em;
+    color:var(--text-dim); opacity:0; animation:introRise .65s .8s ease forwards;
+  }
+  @keyframes watchReveal{ from{ opacity:0; transform:scale(.72) rotate(-18deg); } to{ opacity:1; transform:scale(1) rotate(0); } }
+  @keyframes secondHand{ 0%{ transform:rotate(180deg); } 45%,100%{ transform:rotate(540deg); } }
+  @keyframes minuteHand{ 0%,100%{ transform:rotate(2deg); } 50%{ transform:rotate(8deg); } }
+  @keyframes introRise{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
   @media (prefers-reduced-motion:reduce){
     .intro-screen{ transition:none; }
-    .intro-screen::before, .intro-kicker, .intro-title, .intro-rule, .intro-caption{ animation:none; opacity:1; transform:none; }
+    .watch-face, .intro-wordmark, .intro-progress{ animation:none; opacity:1; transform:none; }
+    .watch-hand{ animation:none; }
   }
-
   /* HERO */
   .hero{
     min-height:100svh; display:flex; flex-direction:column; justify-content:center;
@@ -660,10 +670,12 @@
 
 <div class="intro-screen" id="introScreen" aria-hidden="true">
   <div class="intro-mark">
-    <div class="intro-kicker">Nandhan U / Portfolio</div>
-    <div class="intro-title">Data into direction.</div>
-    <div class="intro-rule"></div>
-    <div class="intro-caption">AI &amp; Data Science · 2026</div>
+    <div class="watch-face" aria-hidden="true">
+      <i class="watch-tick"></i><i class="watch-tick"></i><i class="watch-tick"></i><i class="watch-tick"></i>
+      <i class="watch-hand hour"></i><i class="watch-hand minute"></i><i class="watch-hand second"></i><i class="watch-pin"></i>
+    </div>
+    <div class="intro-wordmark">SPI<span>DY</span></div>
+    <div class="intro-progress">100%</div>
   </div>
 </div>
 
