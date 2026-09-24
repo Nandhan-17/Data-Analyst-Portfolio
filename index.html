@@ -137,6 +137,40 @@
     opacity:0;
   }
 
+  /* opening sequence */
+  .intro-screen{
+    position:fixed; inset:0; z-index:1000; display:grid; place-items:center;
+    background:#030506; color:var(--text); overflow:hidden;
+    transition:opacity .7s ease, visibility .7s ease;
+  }
+  .intro-screen.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
+  .intro-screen::before{
+    content:''; position:absolute; width:min(72vw,720px); aspect-ratio:1;
+    border:1px solid rgba(59,230,168,0.16); border-radius:50%;
+    box-shadow:0 0 0 90px rgba(200,168,107,0.035), 0 0 90px rgba(59,230,168,0.08);
+    animation:introOrbit 2.4s ease-in-out infinite alternate;
+  }
+  .intro-mark{ position:relative; width:min(78vw,430px); text-align:center; }
+  .intro-kicker, .intro-caption{
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--accent); opacity:0;
+  }
+  .intro-kicker{ animation:introRise .65s .15s ease forwards; }
+  .intro-title{
+    margin:18px 0 16px; font-family:var(--display); font-size:clamp(2.2rem,7vw,4.6rem);
+    line-height:.95; letter-spacing:.02em; font-weight:600; opacity:0;
+    animation:introRise .8s .3s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  .intro-rule{ height:1px; width:0; margin:0 auto 16px; background:linear-gradient(90deg,transparent,var(--accent-2),transparent); animation:introRule .8s .65s ease forwards; }
+  .intro-caption{ color:var(--text-dim); animation:introRise .65s .8s ease forwards; }
+  @keyframes introRise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+  @keyframes introRule{ to{ width:100%; } }
+  @keyframes introOrbit{ from{ transform:scale(.92) rotate(-8deg); opacity:.65; } to{ transform:scale(1.04) rotate(8deg); opacity:1; } }
+  @media (prefers-reduced-motion:reduce){
+    .intro-screen{ transition:none; }
+    .intro-screen::before, .intro-kicker, .intro-title, .intro-rule, .intro-caption{ animation:none; opacity:1; transform:none; }
+  }
+
   /* HERO */
   .hero{
     min-height:100svh; display:flex; flex-direction:column; justify-content:center;
@@ -624,6 +658,15 @@
 </head>
 <body>
 
+<div class="intro-screen" id="introScreen" aria-hidden="true">
+  <div class="intro-mark">
+    <div class="intro-kicker">Nandhan U / Portfolio</div>
+    <div class="intro-title">Data into direction.</div>
+    <div class="intro-rule"></div>
+    <div class="intro-caption">AI &amp; Data Science · 2026</div>
+  </div>
+</div>
+
 <div class="bg-photo"></div>
 <div class="bg-scrim"></div>
 <div class="bg-aurora"></div>
@@ -868,6 +911,15 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+/* ---------- opening sequence ---------- */
+const introScreen = document.getElementById('introScreen');
+const introDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1.8;
+document.body.style.overflow = 'hidden';
+setTimeout(()=>{
+  introScreen.classList.add('is-done');
+  document.body.style.overflow = '';
+}, introDelay * 1000);
+
 /* ---------- Lenis smooth scroll ---------- */
 const lenis = new Lenis({ duration: 1.15, smoothWheel: true, easing: (t)=>1-Math.pow(1-t,3) });
 lenis.on('scroll', ScrollTrigger.update);
@@ -918,7 +970,7 @@ nameEl.textContent = '';
   nameEl.appendChild(span);
 });
 const chars = nameEl.querySelectorAll('.ch');
-const tl = gsap.timeline({ delay:0.3 });
+const tl = gsap.timeline({ delay:introDelay + 0.25 });
 tl.to(chars, {
   opacity:1, duration:0.06, stagger:{ each:0.045, from:'start' },
   onStart: function(){}, ease:'none'
@@ -945,12 +997,12 @@ function typeRole(){
     roleEl.style.borderRight='2px solid transparent';
   }
 }
-setTimeout(typeRole, 1300);
+setTimeout(typeRole, (introDelay + 1.05) * 1000);
 
 /* ---------- hero fade up ---------- */
-gsap.from('.status-pill', { y:-16, opacity:0, duration:0.7, ease:'power2.out', delay:0.1 });
-gsap.from('.hero-cta', { y:24, opacity:0, duration:0.9, ease:'power3.out', delay:1.9 });
-gsap.from('.hero-meta', { opacity:0, duration:1, delay:2.1 });
+gsap.from('.status-pill', { y:-16, opacity:0, duration:0.7, ease:'power2.out', delay:introDelay + 0.1 });
+gsap.from('.hero-cta', { y:24, opacity:0, duration:0.9, ease:'power3.out', delay:introDelay + 1.9 });
+gsap.from('.hero-meta', { opacity:0, duration:1, delay:introDelay + 2.1 });
 
 /* ---------- scroll reveals ---------- */
 document.querySelectorAll('.section-head, .cap-card, .project, .chrono-item, .cert-card, .edu-card, .stack-panel').forEach((el)=>{
