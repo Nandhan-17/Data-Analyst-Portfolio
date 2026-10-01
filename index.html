@@ -378,27 +378,30 @@
 
   @media (hover:none){ body{ cursor:auto; } .cursor-dot,.cursor-ring,.spotlight{ display:none; } }
 
-  /* Hamburger button & Mobile Nav Overlay default hidden on Desktop (> 700px) */
+  /* Hamburger button & Mobile Nav Overlay default hidden on Desktop (>= 768px) */
   .hamburger-btn, .mobile-nav-overlay { display: none !important; }
 
-  /* ===== MOBILE STYLING ONLY (<= 700px) ===== */
-  @media (max-width: 700px) {
-    /* Mobile Background Image - preserve portrait composition & non-zoomed appearance */
+  /* ===== MOBILE STYLING ONLY (< 768px) ===== */
+  @media (max-width: 767px) {
+    /* Mobile Background Image - strictly isolated for mobile view (< 768px) */
     .bg-photo {
       position: fixed !important;
       inset: 0 !important;
-      width: 100vw !important;
+      width: 100% !important;
       height: 100dvh !important;
-      background-image: url('/mobile-portrait.jpg') !important;
-      background-size: contain !important;
+      min-height: 100dvh !important;
+      background-image: url('mobile_v3.jpg') !important;
+      background-size: cover !important;
       background-position: center bottom !important;
       background-repeat: no-repeat !important;
       background-attachment: scroll !important;
-      background-color: #000000 !important;
+      background-color: transparent !important;
+      z-index: -3 !important;
     }
-    .bg-aurora {
-      animation: none;
-      opacity: 0.55;
+    .bg-scrim,
+    .bg-aurora,
+    .spotlight {
+      display: none !important;
     }
 
     /* Hide desktop horizontal nav */
