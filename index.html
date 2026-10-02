@@ -207,7 +207,7 @@
   #experience .chrono-item,
   #experience .cert-card,
   #contact .contact-card {
-    animation: ambientContentFloat 6s ease-in-out infinite;
+    animation: floatAnimation 4s ease-in-out infinite;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
@@ -219,12 +219,12 @@
   #capabilities .cap-card:nth-child(3),
   #projects .project:nth-child(3) { animation-delay: 0.8s; }
 
-  @keyframes ambientContentFloat {
+  @keyframes floatAnimation {
     0%, 100% {
-      transform: translate3d(0, 0px, 0);
+      transform: translateY(0px);
     }
     50% {
-      transform: translate3d(0, -3.5px, 0);
+      transform: translateY(-10px);
     }
   }
 
