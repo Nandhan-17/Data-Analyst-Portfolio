@@ -387,23 +387,23 @@
   /* Hamburger button & Mobile Nav Overlay default hidden on Desktop (> 700px) */
   .hamburger-btn, .mobile-nav-overlay { display: none !important; }
 
-/* ===== MOBILE STYLING ONLY (<= 700px) ===== */
-@media (max-width: 700px) {
-  body {
-    background: transparent !important;
-    position: relative;
-    min-height: 100vh;
-    isolation: isolate;
-  }
+  /* ===== MOBILE STYLING ONLY (<= 700px) ===== */
+  @media (max-width: 700px) {
+    body {
+      background: transparent !important;
+      position: relative;
+      min-height: 100vh;
+      isolation: isolate;
+    }
 
-  .bg-photo {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    
-    
+    .bg-photo {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      
+      background-image: url("mobile_v7.png") !important;
       background-size: cover !important;
       background-position: center bottom !important;
       background-repeat: no-repeat !important;
