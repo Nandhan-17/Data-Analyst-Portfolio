@@ -48,7 +48,7 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  .glass, .btn, .pill, .edu-card, .cap-card, .chrono-item, .cert-card, .project, .stack-panel, .section-head, .status-pill {
+  .glass, .btn, .pill, .sub-pill, .edu-card, .cap-card, .chrono-item, .cert-card, .project, .stack-panel, .section-head, .status-pill {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
@@ -260,13 +260,38 @@
   }
   .stack-primary:hover{ transform:translateY(-2px) scale(1.02); color:var(--text); border-color:rgba(59,230,168,0.45); box-shadow:0 6px 18px rgba(59,230,168,0.1); }
   .stack-primary svg{ width:15px; height:15px; color:var(--accent); flex-shrink:0; }
-  .stack-related{
-    display:inline-flex; align-items:center; flex-wrap:wrap; gap:7px;
-    color:rgba(242,245,243,0.58); font-size:0.86rem; line-height:1.6;
+  .flex{ display:flex; }
+  .flex-wrap{ flex-wrap:wrap; }
+  .gap-2{ gap:8px; }
+  .stack-skill-unit{
+    display:flex; flex-direction:column; align-items:flex-start; gap:8px; width:100%;
   }
-  .stack-related::before{ content:'['; color:rgba(242,245,243,0.58); font-size:1rem; }
-  .stack-related::after{ content:']'; color:rgba(242,245,243,0.58); font-size:1rem; }
-  .stack-related span:not(:last-child)::after{ content:'·'; color:rgba(242,245,243,0.58); margin-left:7px; }
+  .stack-subskills,
+  .stack-related{
+    display:flex; flex-wrap:wrap; gap:6px 8px; align-items:center;
+  }
+  .sub-pill,
+  .stack-subskills span,
+  .stack-related span{
+    display:inline-flex; align-items:center; padding:3.5px 9px;
+    font-family:var(--mono); font-size:0.65rem; line-height:1.3;
+    font-weight:500; letter-spacing:0.02em;
+    color:rgba(242,245,243,0.72);
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(242,245,243,0.13);
+    border-radius:6px;
+    white-space:nowrap;
+    transition:transform .25s ease, border-color .25s ease, color .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .sub-pill:hover,
+  .stack-subskills span:hover,
+  .stack-related span:hover{
+    transform:translateY(-1px);
+    color:var(--text);
+    border-color:rgba(59,230,168,0.45);
+    background:rgba(59,230,168,0.06);
+    box-shadow:0 4px 12px rgba(59,230,168,0.08);
+  }
   .stack-extra{ display:flex; flex-wrap:wrap; gap:9px; margin-top:1px; }
   .stack-extra .pill{ display:inline-flex; align-items:center; gap:6px; padding:7px 10px; font-size:0.72rem; border-radius:8px; color:var(--text); background:rgba(255,255,255,0.035); transition:transform .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease; }
   .stack-extra .pill:hover{ transform:translateY(-2px) scale(1.02); color:var(--text); border-color:rgba(59,230,168,0.45); box-shadow:0 6px 18px rgba(59,230,168,0.1); }
@@ -771,18 +796,28 @@
         <!-- Programming Languages -->
         <div class="stack-group">
           <div class="label">Programming Languages</div>
-          <div class="pill-row">
+          <div class="stack-skill-unit">
             <span class="stack-primary python"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c-4.7 0-4.5 2-4.5 2v3h4.6v1H5.4S2 7.6 2 12.4 5 17.5 5 17.5h2v-3.1s-.1-3.1 3-3.1h5.1s2.9 0 2.9-2.8V5s.5-3-6-3Zm-2.5 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="currentColor"></path><path d="M12 22c4.7 0 4.5-2 4.5-2v-3h-4.6v-1h6.7s3.4.4 3.4-4.4S19 6.5 19 6.5h-2v3.1s.1 3.1-3 3.1H8.9S6 12.7 6 15.5V19s-.5 3 6 3Zm2.5-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" fill="currentColor"></path></svg>Python</span>
-            <span class="stack-related"><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span></span>
+            <div class="stack-subskills flex flex-wrap gap-2">
+              <span class="sub-pill">Pandas</span>
+              <span class="sub-pill">NumPy</span>
+              <span class="sub-pill">Matplotlib</span>
+              <span class="sub-pill">Seaborn</span>
+            </div>
           </div>
         </div>
 
         <!-- Database & Querying -->
         <div class="stack-group">
           <div class="label">Database &amp; Querying</div>
-          <div class="pill-row">
+          <div class="stack-skill-unit">
             <span class="stack-primary mysql"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.3 17.8c.8-1.8 2.1-3.5 3.7-4.8-.1-2.8.2-5.1 1.2-6.8.9-1.6 2.2-2.6 3.8-3.1-.2 1.1-.1 2.1.3 3 .7-.5 1.6-.8 2.6-.8 1.5 0 2.8.5 3.8 1.5-1.1.1-2.1.5-3 1.2 1.2.3 2.2.9 3 1.8-1.1.3-2.1.8-2.8 1.6-.6.7-1.1 1.6-1.3 2.7 1.5-.3 2.8-.1 3.9.6-1 .4-1.9 1-2.6 1.9-.8 1-1.2 2.2-1.3 3.5-1.5-.7-3-.8-5-.3-1.7.6-3.4.5-5-.1-.7-.3-1.3-.6-1.9-1.1Z"></path></svg>MySQL</span>
-            <span class="stack-related"><span>Joins</span><span>Subqueries</span><span>Group By</span><span>Aggregations</span></span>
+            <div class="stack-subskills flex flex-wrap gap-2">
+              <span class="sub-pill">Joins</span>
+              <span class="sub-pill">Subqueries</span>
+              <span class="sub-pill">Group By</span>
+              <span class="sub-pill">Aggregations</span>
+            </div>
           </div>
           <div class="pill-row">
             <div class="stack-extra">
@@ -798,18 +833,25 @@
             BI &amp; Analytics Tools
             <span style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border:1.5px solid var(--accent); border-radius:50%;"><span style="width:5px; height:5px; background:var(--accent); border-radius:50%;"></span></span>
           </div>
-          <div class="pill-row">
+          <div class="stack-skill-unit">
             <span class="stack-primary powerbi"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h5v16H4V4Zm6 5h5v11h-5V9Zm6-4h5v15h-5V5Z"></path></svg>Power BI</span>
-            <span class="stack-related"><span>DAX</span><span>Data Modeling</span></span>
+            <div class="stack-subskills flex flex-wrap gap-2">
+              <span class="sub-pill">DAX</span>
+              <span class="sub-pill">Data Modeling</span>
+            </div>
           </div>
           <div class="pill-row">
             <div class="stack-extra">
               <span class="pill tableau"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5h16M12 5v14M7 19h10M7 12h10"></path></svg>Tableau</span>
             </div>
           </div>
-          <div class="pill-row">
+          <div class="stack-skill-unit">
             <span class="stack-primary excel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 16v-3m5 3V8m5 8v-6"></path></svg>Excel</span>
-            <span class="stack-related"><span>XLOOKUP</span><span>Pivot Tables</span><span>Power Query</span></span>
+            <div class="stack-subskills flex flex-wrap gap-2">
+              <span class="sub-pill">XLOOKUP</span>
+              <span class="sub-pill">Pivot Tables</span>
+              <span class="sub-pill">Power Query</span>
+            </div>
           </div>
           <div class="pill-row">
             <div class="stack-extra">
@@ -834,13 +876,16 @@
         <!-- Core Competencies -->
         <div class="stack-group">
           <div class="label">Core Competencies</div>
-          <div class="pill-row">
+          <div class="stack-skill-unit">
             <div class="stack-extra">
               <span class="pill analytics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>Analytics</span>
             </div>
-          </div>
-          <div class="pill-row">
-            <span class="stack-related"><span>KPI Tracking</span><span>Data Preprocessing &amp; Validation</span><span>Business Reporting</span><span>Statistical Analysis</span></span>
+            <div class="stack-subskills flex flex-wrap gap-2">
+              <span class="sub-pill">KPI Tracking</span>
+              <span class="sub-pill">Data Preprocessing &amp; Validation</span>
+              <span class="sub-pill">Business Reporting</span>
+              <span class="sub-pill">Statistical Analysis</span>
+            </div>
           </div>
         </div>
 
